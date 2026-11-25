@@ -16,6 +16,13 @@ vendor/
 .DS_Store
 Thumbs.db
 
+# Screenshots (generated locally, not committed)
+docs/screenshots/
+*.png
+*.jpg
+*.jpeg
+*.webp
+
 # Logs
 *.log
 storage/logs/
