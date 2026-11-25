@@ -1,6 +1,6 @@
-# DORSU Faculty Evaluation System
+﻿# DORSU Faculty Evaluation System
 
-Complete, secure Faculty Evaluation System for **Davao Oriental State University (DORSU)** — built in PHP 8.3+ with PDO + MySQL 8.0.
+Complete, secure Faculty Evaluation System for **Davao Oriental State University (DORSU)** â€” built in PHP 8.3+ with PDO + MySQL 8.0.
 
 ## Features
 
@@ -14,15 +14,15 @@ Complete, secure Faculty Evaluation System for **Davao Oriental State University
 - File-based rate limiting (5 attempts / 15 min)
 - Account lockout after repeated failures
 - Secure session cookies (HTTP-only, Secure, SameSite)
-- Remember-me = extended session lifetime only
+- Remember-me = stores email for form prefill only (does not extend session)
 - Append-only audit log
 
 ### Evaluation Workflow
-- Evaluation periods (create, activate/deactivate — admin/chair only)
+- Evaluation periods (create, activate/deactivate â€” admin/chair only)
 - Evaluation criteria with weights and score ranges (admin/chair only)
 - Faculty evaluate colleagues (one draft per evaluator+evaluatee per period)
 - Slider-based score input + comments, auto-saved as draft
-- Submit evaluation → weighted total score computed
+- Submit evaluation â†’ weighted total score computed
 - Admin oversight: view all evaluations, change statuses (submitted/reviewed/approved)
 - Role-based access: `admin`, `chair`, `faculty`
 
@@ -58,7 +58,7 @@ Complete, secure Faculty Evaluation System for **Davao Oriental State University
    composer install
    ```
 
-3. Configure environment — create `.env`:
+3. Configure environment â€” create `.env`:
    ```env
    APP_ENV=local
    APP_DEBUG=true
@@ -69,7 +69,7 @@ Complete, secure Faculty Evaluation System for **Davao Oriental State University
    DB_PORT=3306
    DB_DATABASE=faculty_evaluation
    DB_USERNAME=root
-   DB_PASSWORD=dmsgreate08312001
+   DB_PASSWORD=your_secure_password_here
 
    SESSION_LIFETIME=120
    SESSION_REMEMBER_LIFETIME=10080
@@ -91,7 +91,7 @@ Complete, secure Faculty Evaluation System for **Davao Oriental State University
    MFA_WINDOW=30
    ```
 
-   Note: `DEPARTMENTS` is pipe-separated (`|`) because faculty names contain commas.
+   Note: DEPARTMENTS is pipe-separated (|) because faculty names contain commas.\n    **Never commit your .env file** — it is already in .gitignore.
 
 4. Create the database:
    ```sql
@@ -100,7 +100,7 @@ Complete, secure Faculty Evaluation System for **Davao Oriental State University
 
 5. Run migrations:
    ```bash
-   php database/run_migrations.php
+   php database/migrate.php
    ```
 
 6. Seed demo users (optional, for testing):
@@ -121,67 +121,67 @@ Complete, secure Faculty Evaluation System for **Davao Oriental State University
 
 ```
 faculty-evaluation/
-├── bootstrap.php              # App bootstrap + helpers (faculty_slug, faculty_logo, departments)
-├── composer.json
-├── .env                       # Environment config (not committed)
-├── .env.example
-├── config/
-│   ├── database.php           # PDO config (sqlite/mysql driver-keyed)
-│   └── session.php            # Session configuration
-├── database/
-│   ├── run_migrations.php     # Driver-aware migration runner (auto-creates MySQL DB)
-│   └── migrations/
-│       ├── 001_create_users_table.php
-│       └── 002_create_evaluation_tables.php
-├── public/                    # Document root
-│   ├── index.php              # Auth slider (login/register)
-│   ├── register.php           # Redirects to index.php?mode=register
-│   ├── dashboard.php          # Protected dashboard + profile
-│   ├── evaluations.php        # Evaluation controller (dashboard/fill/save/submit/admin)
-│   ├── logout.php
-│   ├── assets/
-│   │   ├── css/style.css
-│   │   ├── js/main.js
-│   │   └── img/
-│   │       ├── dorsu-seal.png
-│   │       ├── dorsu-logo.png
-│   │       ├── campus.jpg
-│   │       └── faculties/     # 7 faculty logo PNGs (facet, fted, fcje, fnahs, fals, fhsc, fbm)
-│   └── .htaccess
-├── src/
-│   ├── Auth/
-│   │   ├── DTO/
-│   │   ├── Entity/            # User, UserRole, UserStatus
-│   │   ├── Repository/        # UserRepository (incl. listActiveUsers)
-│   │   ├── Service/           # AuthService
-│   │   └── Middleware/        # AuthMiddleware, CsrfMiddleware
-│   ├── Evaluation/
-│   │   ├── Entity/            # Evaluation, EvaluationPeriod, EvaluationStatus, EvaluationCriterion, EvaluationResponse
-│   │   ├── Repository/        # EvaluationRepository
-│   │   └── Service/           # EvaluationService
-│   └── Shared/
-│       ├── AuditLogger.php
-│       ├── Session.php
-│       └── Validation.php
-├── tests/
-│   ├── Unit/
-│   └── Security/
-├── templates/
-│   ├── layout.php             # Base layout with sidebar
-│   ├── partials/
-│   │   ├── header.php         # Top bar (logo, user name/role, logout)
-│   │   ├── sidebar.php        # Collapsible left navigation
-│   │   ├── messages.php
-│   │   └── footer.php
-│   ├── auth/
-│   │   └── auth-slider.php    # Login/register slider with faculty logo strip
-│   └── evaluation/
-│       ├── dashboard.php
-│       ├── fill.php
-│      └── admin.php
-├── docs/
-│   └── screenshots/           # Browser screenshots of each page
-└── phpunit.xml
+â”œâ”€â”€ bootstrap.php              # App bootstrap + helpers (faculty_slug, faculty_logo, departments)
+â”œâ”€â”€ composer.json
+â”œâ”€â”€ .env                       # Environment config (not committed)
+â”œâ”€â”€ .env.example
+â”œâ”€â”€ config/
+â”‚   â”œâ”€â”€ database.php           # PDO config (sqlite/mysql driver-keyed)
+â”‚   â””â”€â”€ session.php            # Session configuration
+â”œâ”€â”€ database/
+â”‚   â”œâ”€â”€ migrate.php     # Driver-aware migration runner (auto-creates MySQL DB) (auto-creates MySQL DB)
+â”‚   â””â”€â”€ migrations/
+â”‚       â”œâ”€â”€ 001_create_users_table.php
+â”‚       â””â”€â”€ 002_create_evaluation_tables.php
+â”œâ”€â”€ public/                    # Document root
+â”‚   â”œâ”€â”€ index.php              # Auth slider (login/register)
+â”‚   â”œâ”€â”€ register.php           # Redirects to index.php?mode=register
+â”‚   â”œâ”€â”€ dashboard.php          # Protected dashboard + profile
+â”‚   â”œâ”€â”€ evaluations.php        # Evaluation controller (dashboard/fill/save/submit/admin)
+â”‚   â”œâ”€â”€ logout.php
+â”‚   â”œâ”€â”€ assets/
+â”‚   â”‚   â”œâ”€â”€ css/style.css
+â”‚   â”‚   â”œâ”€â”€ js/main.js
+â”‚   â”‚   â””â”€â”€ img/
+â”‚   â”‚       â”œâ”€â”€ dorsu-seal.png
+â”‚   â”‚       â”œâ”€â”€ dorsu-logo.png
+â”‚   â”‚       â”œâ”€â”€ campus.jpg
+â”‚   â”‚       â””â”€â”€ faculties/     # 7 faculty logo PNGs (facet, fted, fcje, fnahs, fals, fhsc, fbm)
+â”‚   â””â”€â”€ .htaccess
+â”œâ”€â”€ src/
+â”‚   â”œâ”€â”€ Auth/
+â”‚   â”‚   â”œâ”€â”€ DTO/
+â”‚   â”‚   â”œâ”€â”€ Entity/            # User, UserRole, UserStatus
+â”‚   â”‚   â”œâ”€â”€ Repository/        # UserRepository (incl. listActiveUsers)
+â”‚   â”‚   â”œâ”€â”€ Service/           # AuthService
+â”‚   â”‚   â””â”€â”€ Middleware/        # AuthMiddleware, CsrfMiddleware
+â”‚   â”œâ”€â”€ Evaluation/
+â”‚   â”‚   â”œâ”€â”€ Entity/            # Evaluation, EvaluationPeriod, EvaluationStatus, EvaluationCriterion, EvaluationResponse
+â”‚   â”‚   â”œâ”€â”€ Repository/        # EvaluationRepository
+â”‚   â”‚   â””â”€â”€ Service/           # EvaluationService
+â”‚   â””â”€â”€ Shared/
+â”‚       â”œâ”€â”€ AuditLogger.php
+â”‚       â”œâ”€â”€ Session.php
+â”‚       â””â”€â”€ Validation.php
+â”œâ”€â”€ tests/
+â”‚   â”œâ”€â”€ Unit/
+â”‚   â””â”€â”€ Security/
+â”œâ”€â”€ templates/
+â”‚   â”œâ”€â”€ layout.php             # Base layout with sidebar
+â”‚   â”œâ”€â”€ partials/
+â”‚   â”‚   â”œâ”€â”€ sidebar.php        # Collapsible left navigation (includes burger toggle, brand, user profile)
+â”‚   â”‚   â”œâ”€â”€ sidebar.php        # Collapsible left navigation
+â”‚   â”‚   â”œâ”€â”€ messages.php
+â”‚   â”‚   â””â”€â”€ footer.php
+â”‚   â”œâ”€â”€ auth/
+â”‚   â”‚   â””â”€â”€ auth-slider.php    # Login/register slider with faculty logo strip
+â”‚   â””â”€â”€ evaluation/
+â”‚       â”œâ”€â”€ dashboard.php
+â”‚       â”œâ”€â”€ fill.php
+â”‚      â””â”€â”€ admin.php
+â”œâ”€â”€ docs/
+â”‚   â””â”€â”€ screenshots/           # Browser screenshots (gitignored — generate locally)
+â””â”€â”€ phpunit.xml
 ```
 
 ## Running Tests
@@ -206,17 +206,17 @@ Expected: `32 tests, 75 assertions, OK`
 | Security Headers | CSP, X-Frame-Options: DENY, X-Content-Type-Options, Referrer-Policy |
 | Audit Log | Append-only log of auth + evaluation state changes |
 
-## Browser Screenshots
+## Screenshots
 
-Located in `docs/screenshots/`:
-- `v4-01-auth-login.png` — Sign-in slider
-- `v4-02-auth-register.png` — Sign-up slider with department logo preview
-- `v4-03-dashboard-sidebar.png` — Dashboard with collapsible sidebar
-- `v4-04-evaluations-sidebar.png` — Evaluations dashboard (colleague cards with faculty logos)
-- `v4-05-fill-sidebar.png` — Evaluation fill form (scores + comments)
-- `v4-06-after-submit.png` — After submission
-- `v4-07-admin-panel.png` — Admin panel (periods, criteria, oversight)
+Screenshots are **not committed** (see .gitignore). Generate them locally:
+
+- Lab 1 (auth): docs/screenshots/lab1-01-login.png, lab1-02-register.png
+- Run the app and capture via Playwright or browser dev tools for other pages
 
 ## License
 
 Proprietary - Davao Oriental State University
+
+
+
+
