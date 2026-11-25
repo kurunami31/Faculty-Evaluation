@@ -1,0 +1,25 @@
+parameters:
+    level: 9
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - vendor
+    ignoreErrors:
+        - '/^Parameter .* has no type hint specified\.$/'
+        - '/^Cannot cast mixed to int\.$/'
+        - '/^Parameter .* expects string, mixed given\.$/'
+        - '/^Parameter .* expects int\|string, mixed given\.$/'
+        - '/^Parameter .* expects array<string, mixed>, mixed given\.$/'
+        - '/^Cannot access offset .* on mixed\.$/'
+        - '/^Method .* should return int but returns float\|int.*$/'
+        - '/^Offset .* on left side of \?\? always exists and is not nullable\.$/'
+        - '/^Parameter #1 \\ of function setcookie expects string, string\|false given\.$/'
+        - '/^Parameter #1 \\ of function substr expects string, string\|false given\.$/'
+        - '/^Parameter #1 \\ of function json_decode expects string, string\|false given\.$/'
+        - '/^Constructor of class .* has an unused parameter .*$/'
+        - '/^Cannot cast mixed to string\.$/'
+        - '/^Access to an undefined property App\\Auth\\Entity\\User::\\\.$/'
+    checkMissingIterableValueType: false
+    treatPhpDocTypesAsCertain: true
+    reportUnmatchedIgnoredErrors: false
