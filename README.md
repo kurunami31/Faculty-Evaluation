@@ -58,7 +58,7 @@ Complete, secure Faculty Evaluation System for **Davao Oriental State University
    composer install
    ```
 
-3. Configure environment â€” create `.env`:
+3. Configure environment — create `.env`:
    ```env
    APP_ENV=local
    APP_DEBUG=true
@@ -91,7 +91,7 @@ Complete, secure Faculty Evaluation System for **Davao Oriental State University
    MFA_WINDOW=30
    ```
 
-   Note: DEPARTMENTS is pipe-separated (|) because faculty names contain commas.\n    **Never commit your .env file** — it is already in .gitignore.
+   Note: DEPARTMENTS is pipe-separated (`|`) because faculty names contain commas.\n\n    **Never commit your `.env` file** — it is already in `.gitignore`. — it is already in .gitignore.
 
 4. Create the database:
    ```sql
@@ -215,6 +215,7 @@ Screenshots are **not committed** (see .gitignore). Generate them locally:
 ## License
 
 Proprietary - Davao Oriental State University
+
 
 
 
